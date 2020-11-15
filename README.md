@@ -148,3 +148,6 @@ Aktifkan a2ensite penanjakan
 Buka di browser penanjakan.semerut18.pw
 
 ![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/penanjakan.PNG)
+
+
+NB : Sebenernya mau lanjut ke nomer 11 tapi koneksi internet terputus vpnnya ga bisa konek dan akhirnya auto ke close. Kemudian mau lanjut dibuka error apachenya. Untuk ngulang dari awal probolinggo kayaknya ngga cukup waktunya jadi yasudah ...
