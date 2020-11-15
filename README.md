@@ -35,9 +35,22 @@ xterm -T GRESIK -e linux ubd0=GRESIK,jarkom umid=GRESIK eth0=daemon,,,switch1 me
 
 
 
-### 1. alamat http://semerut18.pw
-### 2. alias http://www.semeruyyy.pw
-### 3. subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO
-### 4. reverse domain untuk domain utama. Untuk mengantisipasi server dicuri/rusak,
-### 5. DNS Server Slave pada MOJOKERTO
-### 6. subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO.
+#### 1. alamat http://semerut18.pw
+#### 2. alias http://www.semeruyyy.pw
+#### 3. subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO
+#### 4. reverse domain untuk domain utama. Untuk mengantisipasi server dicuri/rusak,
+#### 5. DNS Server Slave pada MOJOKERTO
+Edit file /etc/bind/named.conf.local
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/dns%20slave%201.PNG)
+
+#### 6. subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO.
+#### 7. subdomain dengan nama http:naik.gunung.semeruyyy.pw, domain ini diarahkan ke IP Server PROBOLINGGO
+#### 8. Domain http://semeruyyy.pw memiliki *DocumentRoot* pada /var/www/semeruyyy.pw. Awalnya web dapat diakses menggunakan alamat http://semeruyyy.pw/index.php/home.
+#### 9. Karena dirasa alamat urlnya kurang bagus, maka diaktifkan mod rewrite agar urlnya menjadi http://semeruyyy.pw/home
+#### 10. Web http://penanjakan.semeruyyy.pw akan digunakan untuk menyimpan assets file yang memiliki *DocumentRoot* pada /var/www/penanjakan.semeruyyy.pw dan memiliki struktur folder sebagai berikut
+```
+/var/www/penanjakan.semeruyyy.pw
+    /public/javascripts
+    /public/css
+    /public/images/errors
+```
