@@ -40,13 +40,95 @@ xterm -T GRESIK -e linux ubd0=GRESIK,jarkom umid=GRESIK eth0=daemon,,,switch1 me
 #### 3. subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO
 #### 4. reverse domain untuk domain utama. Untuk mengantisipasi server dicuri/rusak,
 #### 5. DNS Server Slave pada MOJOKERTO
-Edit file /etc/bind/named.conf.local
+Edit file /etc/bind/named.conf.local di MALANG
+
 ![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/dns%20slave%201.PNG)
 
+Edit file /etc/bind/named.conf.local di MOJOKERTO
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/dns%20slave%202.PNG)
+
+Kemudian restart bind9, matikan MALANG dan test dari GRESIK
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/dns%20slave%204.PNG)
+
 #### 6. subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO.
+
+Pada MALANG /etc/bind/jarkom/semerut18.pw ubah menjadi berikut (maaf lupa screenshot)
+
+```
+...
+;
+@           IN  NS  semerut18.pw.
+@           IN  A       10.151.71.124
+www         IN  CNAME   10.151.73.124
+penanjakan  IN  A       10.151.71.124
+ns1         IN  A       10.151.71.124
+gunung      IN  NS      ns1
+```
+
+Edit /etc/bind/named.conf.options pada MALANG dan MOJOKERTO 
+- comment (tambahin //) di dnssec-validation auto
+- tambahkan ```allow-query{any;};```
+
+Edit /etc/bind/named.conf.local di MALANG
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/sebelom%20ping%20gunungsemeru%201.PNG)
+
+Edit di MOJOKERTO /etc/bind/delegasi/gunung.semerut16.pw menjadi seperti ini
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/sebelom%20ping%20gunungsemeru%202.PNG)
+
+Coba PING dari gresik
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/ping%20gunungsemeru.PNG)
+
+Yeay bisa :)
+
 #### 7. subdomain dengan nama http:naik.gunung.semeruyyy.pw, domain ini diarahkan ke IP Server PROBOLINGGO
+
+Pada MOJOKERTO ubah file /etc/bind/delegasi/gunung.semerut18.pw menjadi seperti berikut
+
+~[](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/otw%20naik%20gunung%20semeru.PNG)
+
+Edit juga file /etc/bind/named.conf.local seperti berikut
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/otw%20naik%20gunung%20semeru%202.PNG)
+
+Coba ping dari gresik
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/nyampe%20naek%20gunung%20semeru.PNG)
+
 #### 8. Domain http://semeruyyy.pw memiliki *DocumentRoot* pada /var/www/semeruyyy.pw. Awalnya web dapat diakses menggunakan alamat http://semeruyyy.pw/index.php/home.
+
+Menambahkan ServerName dan DocumentRoot di PROBOLINGGO file semerut18.pw.conf
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/web%20semerut18.pw%20bts.PNG)
+
+Buka browser, masukkin *semerut18.pw*
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/web%20semerut18.pw.PNG)
+
+Tadaa
+
+
 #### 9. Karena dirasa alamat urlnya kurang bagus, maka diaktifkan mod rewrite agar urlnya menjadi http://semeruyyy.pw/home
+
+Aktifkan a2enmod rewrite di PROBOLINGGO
+
+Edit /etc/apache2/sites-enabled/semerut18.pw.conf -> ganti `AllowOverride None` jadi `AllowOverride All`
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/otw%20semeru%20home%202.PNG)
+
+Edit .htaccess seperti berikut
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/otw%20semeru%20home.PNG)
+
+Buka browser dan jalankan semerut18.pw/home
+Tadaa
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/semeru.pw%20home.PNG)
+
 #### 10. Web http://penanjakan.semeruyyy.pw akan digunakan untuk menyimpan assets file yang memiliki *DocumentRoot* pada /var/www/penanjakan.semeruyyy.pw dan memiliki struktur folder sebagai berikut
 ```
 /var/www/penanjakan.semeruyyy.pw
