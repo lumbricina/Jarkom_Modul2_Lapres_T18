@@ -180,3 +180,11 @@ Tadaa
     /public/css
     /public/images/errors
 ```
+
+Ubah /etc/apache2/sites-enabled/penanjakan.semerut18.pw.conf menjadi seperti berikut
+
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/otw%20penanjakan1.PNG)
+
+Kemudian buka di browser dan tampak tampilan seperti berikut
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/penanjakan.PNG)
