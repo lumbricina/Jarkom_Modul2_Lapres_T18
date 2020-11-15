@@ -37,9 +37,9 @@ xterm -T GRESIK -e linux ubd0=GRESIK,jarkom umid=GRESIK eth0=daemon,,,switch1 me
 
 #### 1. alamat http://semerut18.pw
 kita akan membuat domain semerut18.pw
-Lakukan perintah pada MALANG. Isikan seperti berikut: \n
-```nano /etc/bind/named.conf.local```
-Isikan configurasi domain jarkom2020.com sesuai dengan syntax berikut: \n
+Lakukan perintah pada MALANG. Isikan seperti berikut: <br/>
+```nano /etc/bind/named.conf.local``` <br/>
+Isikan configurasi domain jarkom2020.com sesuai dengan syntax berikut: <br/>
 ```
 zone "semerut18.pw" {
 	type master;
@@ -49,10 +49,11 @@ zone "semerut18.pw" {
 ![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/DNS%20SERVER%20MALANG.PNG)
 
 #### 2. alias http://www.semerut18.pw
-Record CNAME adalah sebuah record yang membuat alias name dan mengarahkan domain ke alamat/domain yang lain.
-buka file semerut18.pw pada server malang dan isinya seperti ini
-![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/nomor%202.PNG)
+Record CNAME adalah sebuah record yang membuat alias name dan mengarahkan domain ke alamat/domain yang lain. <br/>
+buka file semerut18.pw pada server malang dan isinya seperti ini  <br/>
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/nomor%202.PNG) <br/>
 pada bagian ``` @	IN	NS	semerut18.pw```
+
 #### 3. subdomain http://penanjakan.semerut18.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO
 Edit file ``` /etc/bind/jarkom/semerut18.pw ``` lalu tambahkan subdomain untuk semerut18.pw yang mengarah ke IP PROBOLINGGO.
 pada bagian ``` penanjakan	IN	A	10.151.71.124 ; IP PROBOLINGGO```
@@ -67,21 +68,31 @@ zone "71.151.10.in-addr.arpa" {
     file "/etc/bind/jarkom/71.151.10.in-addr.arpa";
 };
 ```
+
 ![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/DNS%20SERVER%20MALANG.PNG)
 
-untuk membuktikannya bisa kita ping
-![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/DNS%20SERVER%20MALANG.PNG)
-
-#### 5. DNS Server Slave pada MOJOKERTO
-Edit file /etc/bind/named.conf.local di MALANG
-
+untuk mengecek konfigurasi kita gunakan ```host -t PTR "IP MALANG"``` pada GRESIK <br/>
 ![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/reverse.PNG)
 
-Edit file /etc/bind/named.conf.local di MOJOKERTO
+#### 5. DNS Server Slave pada MOJOKERTO
+Edit file /etc/bind/named.conf.local di MALANG 
+```
+zone "semerut18.pw" {
+    type master;
+    notify yes;
+    also-notify { "10.151.71.123"; }; // Masukan IP MOJOKERTO tanpa tanda petik
+    allow-transfer { "10.151.71.123"; }; // Masukan IP MOJOKERTO tanpa tanda petik
+    file "/etc/bind/jarkom/semerut18.pw";
+};
+```
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/DNS%20SERVER%20MALANG.PNG)
+
+<br/> Edit file /etc/bind/named.conf.local di MOJOKERTO
 
 ![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/dns%20slave%202.PNG)
 
-Kemudian restart bind9, matikan MALANG dan test dari GRESIK
+<br/> Kemudian restart bind9, matikan MALANG dan test dari GRESIK
 
 ![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/dns%20slave%204.PNG)
 
