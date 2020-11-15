@@ -136,3 +136,15 @@ Tadaa
     /public/css
     /public/images/errors
 ```
+
+Semua file penanjakan di unzip ke folder penanjakan.semerut18.pw
+
+Edit file penanjakan.semerut18.pw di *ServerName* dan *DocumentRoot* seperti gambar berikut
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/otw%20penanjakan1.PNG)
+
+Aktifkan a2ensite penanjakan
+
+Buka di browser penanjakan.semerut18.pw
+
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/penanjakan.PNG)
