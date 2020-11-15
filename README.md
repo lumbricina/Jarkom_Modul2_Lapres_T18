@@ -36,6 +36,18 @@ xterm -T GRESIK -e linux ubd0=GRESIK,jarkom umid=GRESIK eth0=daemon,,,switch1 me
 
 
 #### 1. alamat http://semerut18.pw
+kita akan membuat domain semerut18.pw
+Lakukan perintah pada MALANG. Isikan seperti berikut: \n
+```nano /etc/bind/named.conf.local```
+Isikan configurasi domain jarkom2020.com sesuai dengan syntax berikut: \n
+```
+zone "semerut18.pw" {
+	type master;
+	file "/etc/bind/jarkom/semerut18.pw";
+};
+```
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/dns%20slave%201.PNG)
+
 #### 2. alias http://www.semeruyyy.pw
 #### 3. subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO
 #### 4. reverse domain untuk domain utama. Untuk mengantisipasi server dicuri/rusak,
