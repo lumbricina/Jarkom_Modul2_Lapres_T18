@@ -46,15 +46,36 @@ zone "semerut18.pw" {
 	file "/etc/bind/jarkom/semerut18.pw";
 };
 ```
-![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/dns%20slave%201.PNG)
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/DNS%20SERVER%20MALANG.PNG)
 
-#### 2. alias http://www.semeruyyy.pw
-#### 3. subdomain http://penanjakan.semeruyyy.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO
+#### 2. alias http://www.semerut18.pw
+Record CNAME adalah sebuah record yang membuat alias name dan mengarahkan domain ke alamat/domain yang lain.
+buka file semerut18.pw pada server malang dan isinya seperti ini
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/nomor%202.PNG)
+pada bagian ``` @	IN	NS	semerut18.pw```
+#### 3. subdomain http://penanjakan.semerut18.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO
+Edit file ``` /etc/bind/jarkom/semerut18.pw ``` lalu tambahkan subdomain untuk semerut18.pw yang mengarah ke IP PROBOLINGGO.
+pada bagian ``` penanjakan	IN	A	10.151.71.124 ; IP PROBOLINGGO```
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/nomor%202.PNG)
+
 #### 4. reverse domain untuk domain utama. Untuk mengantisipasi server dicuri/rusak,
+- Edit file ``` /etc/bind/named.conf.local ``` pada MALANG 
+- Lalu tambahkan konfigurasi berikut ke dalam file named.conf.local
+```
+zone "71.151.10.in-addr.arpa" {
+    type master;
+    file "/etc/bind/jarkom/71.151.10.in-addr.arpa";
+};
+```
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/DNS%20SERVER%20MALANG.PNG)
+
+untuk membuktikannya bisa kita ping
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/DNS%20SERVER%20MALANG.PNG)
+
 #### 5. DNS Server Slave pada MOJOKERTO
 Edit file /etc/bind/named.conf.local di MALANG
 
-![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/dns%20slave%201.PNG)
+![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/reverse.PNG)
 
 Edit file /etc/bind/named.conf.local di MOJOKERTO
 
@@ -148,18 +169,3 @@ Tadaa
     /public/css
     /public/images/errors
 ```
-
-Semua file penanjakan di unzip ke folder penanjakan.semerut18.pw
-
-Edit file penanjakan.semerut18.pw di *ServerName* dan *DocumentRoot* seperti gambar berikut
-
-![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/otw%20penanjakan1.PNG)
-
-Aktifkan a2ensite penanjakan
-
-Buka di browser penanjakan.semerut18.pw
-
-![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/penanjakan.PNG)
-
-
-NB : Sebenernya mau lanjut ke nomer 11 tapi koneksi internet terputus vpnnya ga bisa konek dan akhirnya auto ke close. Kemudian mau lanjut dibuka error apachenya. Untuk ngulang dari awal probolinggo kayaknya ngga cukup waktunya jadi yasudah ...
