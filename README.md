@@ -55,8 +55,8 @@ buka file semerut18.pw pada server malang dan isinya seperti ini  <br/>
 pada bagian ``` @	IN	NS	semerut18.pw```
 
 #### 3. subdomain http://penanjakan.semerut18.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO
-Edit file ``` /etc/bind/jarkom/semerut18.pw ``` lalu tambahkan subdomain untuk semerut18.pw yang mengarah ke IP PROBOLINGGO.
-pada bagian ``` penanjakan	IN	A	10.151.71.124 ; IP PROBOLINGGO```
+Edit file ``` /etc/bind/jarkom/semerut18.pw ``` lalu tambahkan subdomain untuk semerut18.pw yang mengarah ke IP PROBOLINGGO. <br/>
+pada bagian ``` penanjakan	IN	A	10.151.71.124 ; IP PROBOLINGGO``` <br/>
 ![](https://github.com/lumbricina/Jarkom_Modul2_Lapres_T18/blob/main/IMAGES/nomor%202.PNG)
 
 #### 4. reverse domain untuk domain utama. Untuk mengantisipasi server dicuri/rusak,
